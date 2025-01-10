@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Profile Generator - RZ1</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="assets/styles/linkedin-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn Profile Generator
+        </a>
+        <div class="nav-actions">
+            <button id="backButton" class="nav-button" title="Back to platforms">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back</span>
+            </button>
+            <button id="themeToggle" class="nav-button" title="Toggle theme">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="linkedin-container">
+        <!-- Form Section -->
+        <div class="linkedin-form">
+            <!-- Basic Info Section -->
+            <section class="form-section">
+                <h3><i class="fas fa-user"></i> Basic Information</h3>
+                <div class="input-group">
+                    <label for="profilePicture">Profile Picture</label>
+                    <div class="profile-upload">
+                        <img id="profilePreview" src="assets/images/default-avatar.svg" alt="Profile Preview">
+                        <input type="file" id="profilePicture" accept="image/*">
+                        <button class="upload-btn">
+                            <i class="fas fa-camera"></i>
+                            Change Photo
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="coverPhoto">Cover Photo</label>
+                    <div class="cover-upload">
+                        <div id="coverPreview" class="cover-preview"></div>
+                        <input type="file" id="coverPhoto" accept="image/*">
+                        <button class="upload-btn">
+                            <i class="fas fa-image"></i>
+                            Change Cover
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="fullName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="fullName" placeholder="e.g., John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label for="headline">Professional Headline <span class="required">*</span></label>
+                    <input type="text" id="headline" placeholder="e.g., Senior Software Engineer | Full Stack Developer | Tech Lead">
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" placeholder="e.g., San Francisco Bay Area">
+                    </div>
+                    <div class="input-group">
+                        <label for="industry">Industry</label>
+                        <input type="text" id="industry" placeholder="e.g., Information Technology">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="openTo">Open To</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="openToJobs"> Finding a new job
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="openToHiring"> Hiring
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="openToServices"> Providing services
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="form-section">
+                <h3><i class="fas fa-info-circle"></i> About</h3>
+                <div class="input-group">
+                    <label for="about">Professional Summary</label>
+                    <div class="rich-text-editor">
+                        <div class="editor-toolbar">
+                            <button type="button" title="Bold"><i class="fas fa-bold"></i></button>
+                            <button type="button" title="Italic"><i class="fas fa-italic"></i></button>
+                            <button type="button" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+                            <button type="button" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+                        </div>
+                        <textarea id="about" rows="6" placeholder="Write a compelling summary that highlights your professional journey, key achievements, and career aspirations..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="form-section">
+                <h3><i class="fas fa-briefcase"></i> Experience</h3>
+                <div id="experienceList"></div>
+                <button id="addExperience" class="add-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Experience
+                </button>
+            </section>
+
+            <!-- Education Section -->
+            <section class="form-section">
+                <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                <div id="educationList"></div>
+                <button id="addEducation" class="add-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Education
+                </button>
+            </section>
+
+            <!-- Skills & Endorsements -->
+            <section class="form-section">
+                <h3><i class="fas fa-star"></i> Skills & Endorsements</h3>
+                <div class="input-group">
+                    <label>Add Skills (Top skills will appear first)</label>
+                    <div class="skill-input">
+                        <input type="text" id="skillInput" placeholder="e.g., JavaScript, Project Management, Leadership">
+                        <button id="addSkill" class="add-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="skillTags" class="skill-tags"></div>
+            </section>
+
+            <!-- Licenses & Certifications -->
+            <section class="form-section">
+                <h3><i class="fas fa-certificate"></i> Licenses & Certifications</h3>
+                <div id="certificationList"></div>
+                <button id="addCertification" class="add-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Certification
+                </button>
+            </section>
+
+            <!-- Languages -->
+            <section class="form-section">
+                <h3><i class="fas fa-language"></i> Languages</h3>
+                <div id="languageList"></div>
+                <button id="addLanguage" class="add-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Language
+                </button>
+            </section>
+
+            <!-- Volunteer Experience -->
+            <section class="form-section">
+                <h3><i class="fas fa-hands-helping"></i> Volunteer Experience</h3>
+                <div id="volunteerList"></div>
+                <button id="addVolunteer" class="add-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Volunteer Experience
+                </button>
+            </section>
+
+            <!-- Projects -->
+            <section class="form-section">
+                <h3><i class="fas fa-project-diagram"></i> Projects</h3>
+                <div id="projectList"></div>
+                <button id="addProject" class="add-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Project
+                </button>
+            </section>
+
+            <!-- Recommendations -->
+            <section class="form-section">
+                <h3><i class="fas fa-comment-dots"></i> Recommendations</h3>
+                <div id="recommendationList"></div>
+                <button id="addRecommendation" class="add-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Recommendation
+                </button>
+            </section>
+
+            <!-- Accomplishments -->
+            <section class="form-section">
+                <h3><i class="fas fa-trophy"></i> Accomplishments</h3>
+                <div class="accomplishment-sections">
+                    <div class="input-group">
+                        <label>Publications</label>
+                        <div id="publicationList"></div>
+                        <button class="add-btn small" onclick="addPublication()">
+                            <i class="fas fa-plus"></i> Add Publication
+                        </button>
+                    </div>
+                    <div class="input-group">
+                        <label>Patents</label>
+                        <div id="patentList"></div>
+                        <button class="add-btn small" onclick="addPatent()">
+                            <i class="fas fa-plus"></i> Add Patent
+                        </button>
+                    </div>
+                    <div class="input-group">
+                        <label>Awards</label>
+                        <div id="awardList"></div>
+                        <button class="add-btn small" onclick="addAward()">
+                            <i class="fas fa-plus"></i> Add Award
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="linkedin-preview">
+            <div class="preview-header">
+                <h3>Live Preview</h3>
+                <div class="preview-actions">
+                    <button class="preview-btn active" data-view="preview">
+                        <i class="fas fa-eye"></i> Preview
+                    </button>
+                    <button class="ai-btn" onclick="generateWithAI()" title="Coming Soon!">
+                        <i class="fas fa-robot"></i> Generate with AI
+                    </button>
+                    <div class="export-dropdown">
+                        <button class="export-btn">
+                            <i class="fas fa-file-export"></i> Export
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="export-options">
+                            <button onclick="exportAsHTML()">
+                                <i class="fas fa-code"></i> Export as HTML
+                            </button>
+                            <button onclick="exportAsJSON()">
+                                <i class="fas fa-file-code"></i> Export as JSON
+                            </button>
+                            <button onclick="exportAsPDF()">
+                                <i class="fas fa-file-pdf"></i> Export as PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-container">
+                <div id="profilePreviewCard" class="profile-preview-card">
+                    <!-- Preview content will be generated here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/linkedin-generator.js"></script>
+</body>
+</html>
