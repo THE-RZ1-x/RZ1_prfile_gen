@@ -1,33 +1,33 @@
 :root {
-    --primary-color: #4361ee;
-    --secondary-color: #3f37c9;
-    --accent-color: #4895ef;
-    --success-color: #4cc9f0;
-    --warning-color: #f72585;
-    --error-color: #e63946;
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --accent-color: #17a2b8;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --error-color: #dc3545;
     --background-color: #f8f9fa;
-    --text-color: #2b2d42;
+    --text-color: #212529;
     --card-background: #ffffff;
     --input-background: #ffffff;
-    --border-color: #e9ecef;
+    --border-color: #dee2e6;
     --modal-background: rgba(0, 0, 0, 0.5);
-    --toast-background: #333333;
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --toast-background: #343a40;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .dark-theme {
-    --primary-color: #4895ef;
-    --secondary-color: #4cc9f0;
-    --accent-color: #3f37c9;
-    --background-color: #1a1b1e;
-    --text-color: #f8f9fa;
-    --card-background: #2b2d42;
-    --input-background: #2b2d42;
-    --border-color: #4a4b53;
-    --modal-background: rgba(0, 0, 0, 0.8);
-    --toast-background: #f8f9fa;
+    --primary-color: #4dabf7;
+    --secondary-color: #868e96;
+    --accent-color: #3bc9db;
+    --background-color: #121212;
+    --text-color: #e9ecef;
+    --card-background: #1e1e1e;
+    --input-background: #212529;
+    --border-color: #343a40;
+    --modal-background: rgba(0, 0, 0, 0.7);
+    --toast-background: #e9ecef;
 }
 
 * {
@@ -94,6 +94,121 @@ body {
     font-size: 0.9rem;
     font-weight: 500;
     transition: all 0.3s ease;
+}
+
+/* Twitter Preview Styles */
+.twitter-profile-preview {
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+.tw-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.tw-profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+.tw-names h4 {
+    margin: 0;
+}
+.tw-names p {
+    margin: 0;
+    color: var(--text-color-secondary);
+}
+.tw-footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* YouTube Preview Styles */
+.youtube-profile-preview {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+.yt-header {
+    position: relative;
+    height: 120px;
+}
+.yt-cover-photo {
+    background-color: #c4c4c4;
+    height: 80px;
+}
+.yt-profile-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--card-bg);
+    position: absolute;
+    bottom: 0;
+    left: 1.5rem;
+}
+.yt-body {
+    padding: 1.5rem;
+    padding-top: 0.5rem;
+}
+.yt-body h3, .yt-body p {
+    margin: 0.25rem 0;
+}
+.yt-subscribe-btn {
+    background-color: #c00;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Facebook Preview Styles */
+.facebook-profile-preview {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--card-bg);
+    overflow: hidden;
+}
+.fb-header {
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+.fb-cover-photo {
+    background-color: #d1d5db;
+    height: 120px;
+    width: 100%;
+}
+.fb-profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid var(--card-bg);
+    margin-top: -50px;
+}
+.fb-header h2 {
+    margin: 0.5rem 0 0.2rem;
+}
+.fb-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-color);
+}
+.fb-actions button {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.fb-actions button:first-child {
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .nav-button i {
@@ -169,11 +284,17 @@ header .tagline {
 }
 
 /* Form Section */
-.form-section {
+.form-section, .preview-section, .platform-card {
     background-color: var(--card-background);
-    padding: 2rem;
-    border-radius: 16px;
+    padding: 2.5rem;
+    border-radius: 20px;
     box-shadow: var(--shadow-md);
+    transition: all 0.3s ease-in-out;
+}
+
+.form-section:hover, .preview-section:hover, .platform-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
 }
 
 /* Steps Indicator */
@@ -231,15 +352,22 @@ label {
     font-size: 0.95rem;
 }
 
-input, textarea {
+input, textarea, select {
     width: 100%;
     padding: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     background-color: var(--input-background);
     color: var(--text-color);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease-in-out;
     font-size: 1rem;
+    font-family: inherit;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 20%, transparent);
 }
 
 input:focus, textarea:focus {
