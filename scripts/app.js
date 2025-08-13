@@ -332,6 +332,12 @@ document.querySelectorAll('.platform-card').forEach(card => {
             window.location.href = 'github-profile.html';
         } else if (platform === 'linkedin') {
             window.location.href = 'linkedin-profile.html';
+        } else if (platform === 'twitter') {
+            window.location.href = 'twitter-profile.html';
+        } else if (platform === 'youtube') {
+            window.location.href = 'youtube-profile.html';
+        } else if (platform === 'facebook') {
+            window.location.href = 'facebook-profile.html';
         } else if (!e.currentTarget.classList.contains('coming-soon')) {
             showToast('This platform is coming soon!', 3000);
         }

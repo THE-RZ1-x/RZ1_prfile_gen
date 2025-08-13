@@ -212,9 +212,72 @@ function initializePreviewToggle() {
     });
 }
 
-// AI Generation (Coming Soon)
+// AI Generation
 function generateWithAI() {
-    showToast('AI Generation coming soon! 🤖', 3000);
+    const apiKey = localStorage.getItem('googleAiApiKey');
+    if (!apiKey) {
+        showToast('Please set your Google AI API Key in the settings first.', 4000);
+        // Maybe open the settings modal automatically
+        // document.getElementById('settingsModal').style.display = 'block';
+        return;
+    }
+
+    const title = document.getElementById('ghTitle').value || "a passionate developer";
+    const learning = document.getElementById('ghLearning').value;
+    const collaboration = document.getElementById('ghCollaboration').value;
+    const skills = getSelectedSkills().join(', ');
+
+    const prompt = `
+        Generate a friendly and professional "About Me" section for a GitHub profile README, in 2-3 sentences.
+        The user has provided the following information about themselves:
+        - Their title is: "${title}"
+        - They are currently learning: "${learning}"
+        - They want to collaborate on: "${collaboration}"
+        - Their skills include: "${skills}"
+
+        Based on this, write a creative and engaging bio.
+        For example: "I'm a passionate developer, currently diving deep into [learning]. I'm always looking for exciting projects to collaborate on, especially in the world of [collaboration]."
+        Keep it concise and professional.
+    `;
+
+    const descriptionTextarea = document.getElementById('ghDescription');
+    const originalText = descriptionTextarea.value;
+    descriptionTextarea.value = "🤖 Generating with AI...";
+
+    fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            contents: [{
+                parts: [{
+                    text: prompt
+                }]
+            }]
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.candidates && data.candidates.length > 0) {
+            const generatedText = data.candidates[0].content.parts[0].text;
+            descriptionTextarea.value = generatedText;
+            generateMarkdown(); // Update the preview
+        } else {
+            descriptionTextarea.value = originalText; // Restore original text on failure
+            showToast('Sorry, the AI could not generate content. Please try again.', 4000);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        descriptionTextarea.value = originalText; // Restore original text on error
+        showToast('Failed to generate content. Check your API key or the console for errors.', 5000);
+    });
 }
 
 // GitHub Commit (Coming Soon)
@@ -276,3 +339,45 @@ document.getElementById('backButton').addEventListener('click', () => {
 
 // Fetch GitHub info button functionality
 document.querySelector('.fetch-btn').addEventListener('click', fetchGitHubInfo);
+
+// Settings Modal Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const settingsButton = document.getElementById('settingsButton');
+    const settingsModal = document.getElementById('settingsModal');
+    const closeSettingsModal = settingsModal.querySelector('.close-modal');
+    const saveSettingsButton = document.getElementById('saveSettings');
+    const apiKeyInput = document.getElementById('apiKey');
+
+    // Load API Key from localStorage
+    if (apiKeyInput) {
+        apiKeyInput.value = localStorage.getItem('googleAiApiKey') || '';
+    }
+
+    if (settingsButton) {
+        settingsButton.addEventListener('click', () => {
+            settingsModal.style.display = 'block';
+        });
+    }
+
+    if (closeSettingsModal) {
+        closeSettingsModal.addEventListener('click', () => {
+            settingsModal.style.display = 'none';
+        });
+    }
+
+    if (saveSettingsButton) {
+        saveSettingsButton.addEventListener('click', () => {
+            if (apiKeyInput) {
+                localStorage.setItem('googleAiApiKey', apiKeyInput.value);
+                showToast('API Key saved!', 2000);
+            }
+            settingsModal.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target === settingsModal) {
+            settingsModal.style.display = 'none';
+        }
+    });
+});

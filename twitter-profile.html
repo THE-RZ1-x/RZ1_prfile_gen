@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Profile Generator - RZ1</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="assets/styles/twitter-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <i class="fab fa-twitter"></i>
+            Twitter Profile Generator
+        </a>
+        <div class="nav-actions">
+            <button id="backButton" class="nav-button" title="Back to platforms">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back</span>
+            </button>
+            <button id="themeToggle" class="nav-button" title="Toggle theme">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="twitter-container">
+        <div class="twitter-form">
+            <!-- Profile Section -->
+            <section class="form-section">
+                <h3>Profile Information</h3>
+                <div class="input-group">
+                    <label for="twitterName">Display Name <span class="required">*</span></label>
+                    <input type="text" id="twitterName" placeholder="Your display name" required>
+                </div>
+                <div class="input-group">
+                    <label for="twitterHandle">Twitter Handle <span class="required">*</span></label>
+                    <div class="handle-input">
+                        <span>@</span>
+                        <input type="text" id="twitterHandle" placeholder="yourhandle" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="twitterBio">Bio</label>
+                    <textarea id="twitterBio" rows="3" placeholder="Write a short bio about yourself..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="twitterLocation">Location</label>
+                    <input type="text" id="twitterLocation" placeholder="e.g., San Francisco, CA">
+                </div>
+                <div class="input-group">
+                    <label for="twitterWebsite">Website</label>
+                    <input type="url" id="twitterWebsite" placeholder="https://yourwebsite.com">
+                </div>
+            </section>
+
+            <!-- Media Section -->
+            <section class="form-section">
+                <h3>Profile Media</h3>
+                <div class="input-group">
+                    <label for="profilePicture">Profile Picture</label>
+                    <input type="file" id="profilePicture" accept="image/*">
+                    <small class="input-help">Recommended: 400x400 pixels</small>
+                </div>
+                <div class="input-group">
+                    <label for="headerImage">Header Image</label>
+                    <input type="file" id="headerImage" accept="image/*">
+                    <small class="input-help">Recommended: 1500x500 pixels</small>
+                </div>
+            </section>
+
+            <!-- Pinned Tweet Section -->
+            <section class="form-section">
+                <h3>Pinned Tweet (Optional)</h3>
+                <div class="input-group">
+                    <textarea id="pinnedTweet" rows="4" placeholder="Compose a tweet to pin to your profile..."></textarea>
+                </div>
+            </section>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="twitter-preview">
+            <div class="preview-header">
+                <h3>Live Preview</h3>
+                <div class="preview-actions">
+                    <button class="copy-btn" onclick="copyProfileImage()">
+                        <i class="fas fa-copy"></i> Copy as Image
+                    </button>
+                    <button class="download-btn" onclick="downloadProfileImage()">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                </div>
+            </div>
+            <div class="preview-container" id="twitterProfileCard">
+                <!-- Twitter profile preview will be generated here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="scripts/twitter-generator.js"></script>
+</body>
+</html>

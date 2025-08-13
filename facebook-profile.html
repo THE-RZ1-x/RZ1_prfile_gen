@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Profile Generator - RZ1</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="assets/styles/facebook-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <i class="fab fa-facebook"></i>
+            Facebook Profile Generator
+        </a>
+        <div class="nav-actions">
+            <button id="backButton" class="nav-button" title="Back to platforms">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back</span>
+            </button>
+            <button id="themeToggle" class="nav-button" title="Toggle theme">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="facebook-container">
+        <div class="facebook-form">
+            <!-- Profile Info Section -->
+            <section class="form-section">
+                <h3>Profile Information</h3>
+                <div class="input-group">
+                    <label for="fbName">Name <span class="required">*</span></label>
+                    <input type="text" id="fbName" placeholder="Your full name" required>
+                </div>
+                 <div class="input-group">
+                    <label for="fbBio">Bio / Quote</label>
+                    <textarea id="fbBio" rows="2" placeholder="Add a short bio or a favorite quote..."></textarea>
+                </div>
+            </section>
+
+            <!-- Media Section -->
+            <section class="form-section">
+                <h3>Profile Media</h3>
+                <div class="input-group">
+                    <label for="profilePicture">Profile Picture</label>
+                    <input type="file" id="profilePicture" accept="image/*">
+                    <small class="input-help">Recommended: 170x170 pixels</small>
+                </div>
+                <div class="input-group">
+                    <label for="coverPhoto">Cover Photo</label>
+                    <input type="file" id="coverPhoto" accept="image/*">
+                    <small class="input-help">Recommended: 851x315 pixels</small>
+                </div>
+            </section>
+
+            <!-- Intro Section -->
+            <section class="form-section">
+                <h3>Intro Details</h3>
+                <div class="input-group">
+                    <label for="fbWork">Works at</label>
+                    <input type="text" id="fbWork" placeholder="e.g., Facebook">
+                </div>
+                <div class="input-group">
+                    <label for="fbEducation">Studied at</label>
+                    <input type="text" id="fbEducation" placeholder="e.g., Harvard University">
+                </div>
+                <div class="input-group">
+                    <label for="fbLocation">Lives in</label>
+                    <input type="text" id="fbLocation" placeholder="e.g., Palo Alto, California">
+                </div>
+                <div class="input-group">
+                    <label for="fbHometown">From</label>
+                    <input type="text" id="fbHometown" placeholder="e.g., Dobbs Ferry, New York">
+                </div>
+            </section>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="facebook-preview">
+            <div class="preview-header">
+                <h3>Live Preview</h3>
+                <div class="preview-actions">
+                    <button class="copy-btn" onclick="copyProfileImage()">
+                        <i class="fas fa-copy"></i> Copy as Image
+                    </button>
+                    <button class="download-btn" onclick="downloadProfileImage()">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                </div>
+            </div>
+            <div class="preview-container" id="facebookProfileCard">
+                <!-- Facebook profile preview will be generated here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="scripts/facebook-generator.js"></script>
+</body>
+</html>

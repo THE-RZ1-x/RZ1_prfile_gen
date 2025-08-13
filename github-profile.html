@@ -23,6 +23,10 @@
                 <i class="fas fa-arrow-left"></i>
                 <span>Back</span>
             </button>
+            <button id="settingsButton" class="nav-button" title="Settings">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </button>
             <button id="themeToggle" class="nav-button" title="Toggle theme">
                 <i class="fas fa-moon"></i>
                 <span>Dark Mode</span>
@@ -194,5 +198,22 @@
     </main>
 
     <script src="scripts/github-generator.js"></script>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Settings</h2>
+            <section class="form-section">
+                <h3>AI Configuration</h3>
+                <div class="input-group">
+                    <label for="apiKey">Google AI API Key</label>
+                    <input type="password" id="apiKey" placeholder="Enter your API key">
+                    <small class="input-help">Your key is stored only in your browser's localStorage.</small>
+                </div>
+                <button id="saveSettings" class="btn primary">Save</button>
+            </section>
+        </div>
+    </div>
 </body>
 </html>

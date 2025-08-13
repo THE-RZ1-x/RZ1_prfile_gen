@@ -1,0 +1,161 @@
+/* Twitter Profile Generator Styles */
+:root {
+    --twitter-blue: #1DA1F2;
+    --twitter-border: #eff3f4;
+    --twitter-dark-border: #2f3336;
+    --twitter-light-text: #0f1419;
+    --twitter-dark-text: #d9d9d9;
+    --twitter-gray-text: #536471;
+    --twitter-dark-gray-text: #8b949e;
+}
+
+.twitter-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.twitter-form {
+    background-color: var(--card-background);
+    border-radius: 20px;
+    padding: 2rem;
+    height: fit-content;
+}
+
+/* Preview Section */
+.twitter-preview {
+    background-color: var(--card-background);
+    border-radius: 20px;
+    padding: 1.5rem;
+    height: fit-content;
+}
+
+#twitterProfileCard {
+    border: 1px solid var(--twitter-border);
+    border-radius: 16px;
+    overflow: hidden;
+    font-family: "TwitterChirp", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #fff;
+    color: var(--twitter-light-text);
+}
+
+.dark-theme #twitterProfileCard {
+    background-color: #000;
+    border-color: var(--twitter-dark-border);
+    color: var(--twitter-dark-text);
+}
+
+.twitter-header {
+    height: 130px;
+    background-color: #ccc;
+    background-size: cover;
+    background-position: center;
+}
+
+.twitter-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+}
+
+.twitter-profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    margin-top: -70px;
+    background-color: #eee;
+    background-size: cover;
+    background-position: center;
+}
+.dark-theme .twitter-profile-pic {
+    border-color: #000;
+}
+
+.follow-btn {
+    background-color: #0f1419;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.dark-theme .follow-btn {
+    background-color: #eff3f4;
+    color: #0f1419;
+}
+
+.twitter-info {
+    padding: 1rem;
+    padding-top: 0.5rem;
+}
+
+.twitter-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.twitter-handle {
+    color: var(--twitter-gray-text);
+    margin-bottom: 1rem;
+}
+.dark-theme .twitter-handle {
+    color: var(--twitter-dark-gray-text);
+}
+
+.twitter-bio {
+    margin-bottom: 1rem;
+}
+
+.twitter-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    color: var(--twitter-gray-text);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+.dark-theme .twitter-meta {
+    color: var(--twitter-dark-gray-text);
+}
+
+.twitter-meta i {
+    margin-right: 0.5rem;
+}
+
+.twitter-follows {
+    display: flex;
+    gap: 1.5rem;
+}
+.twitter-follows span strong {
+    color: var(--twitter-light-text);
+}
+.dark-theme .twitter-follows span strong {
+    color: var(--twitter-dark-text);
+}
+
+.pinned-tweet {
+    padding: 1rem;
+    border-top: 1px solid var(--twitter-border);
+    font-size: 0.9rem;
+}
+.dark-theme .pinned-tweet {
+    border-color: var(--twitter-dark-border);
+}
+
+.pinned-tweet i {
+    color: var(--twitter-gray-text);
+    margin-right: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .twitter-container {
+        grid-template-columns: 1fr;
+    }
+}
