@@ -102,7 +102,7 @@ function downloadProfileImage() {
     html2canvas(card, {
         allowTaint: true,
         useCORS: true,
-        backgroundColor: document.body.classList.contains('dark-theme') ? '#242526' : '#ffffff'
+        backgroundColor: document.body.classList.contains('dark-theme') ? '#18191a' : '#f0f2f5'
     }).then(canvas => {
         const link = document.createElement('a');
         link.download = `${name.toLowerCase().replace(/\s+/g, '-')}.png`;
@@ -116,7 +116,7 @@ function copyProfileImage() {
     html2canvas(card, {
         allowTaint: true,
         useCORS: true,
-        backgroundColor: document.body.classList.contains('dark-theme') ? '#242526' : '#ffffff'
+        backgroundColor: document.body.classList.contains('dark-theme') ? '#18191a' : '#f0f2f5'
     }).then(canvas => {
         canvas.toBlob(blob => {
             navigator.clipboard.write([

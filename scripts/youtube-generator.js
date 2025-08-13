@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updatePreview() {
         const name = youtubeName.value || 'Channel Name';
         const handle = youtubeHandle.value || 'channelhandle';
-        const subs = youtubeSubs.value || '0 subscribers';
+        const subs = youtubeSubs.value || '0';
         const desc = youtubeDesc.value;
         const vidTitle = videoTitle.value;
 
@@ -111,7 +111,7 @@ function downloadProfileImage() {
     html2canvas(card, {
         allowTaint: true,
         useCORS: true,
-        backgroundColor: document.body.classList.contains('dark-theme') ? '#1a1b1e' : '#f8f9fa'
+        backgroundColor: document.body.classList.contains('dark-theme') ? '#0f0f0f' : '#f9f9f9'
     }).then(canvas => {
         const link = document.createElement('a');
         link.download = `${name.toLowerCase().replace(/\s+/g, '-')}.png`;
@@ -125,7 +125,7 @@ function copyProfileImage() {
     html2canvas(card, {
         allowTaint: true,
         useCORS: true,
-        backgroundColor: document.body.classList.contains('dark-theme') ? '#1a1b1e' : '#f8f9fa'
+        backgroundColor: document.body.classList.contains('dark-theme') ? '#0f0f0f' : '#f9f9f9'
     }).then(canvas => {
         canvas.toBlob(blob => {
             navigator.clipboard.write([
